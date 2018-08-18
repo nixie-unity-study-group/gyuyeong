@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 
     private static int score = 0;
     private static UIController uiController;
+    private static GameObject player;
 
     public static int GetScore() {
         return score;
@@ -23,14 +24,28 @@ public class GameManager : MonoBehaviour {
         Debug.Log("current score: " + GetScore());
     }
 
+    public static void ShowReestartButton() {
+        uiController.showRestartButton();
+    }
+    public void HideRestartButton() {
+        uiController.HideRestartButton();
+    }
+
+    public void RestartPlyaer() {
+        Debug.Log("restart");
+        score = 0;
+        player.SetActive(true);
+        player.transform.position = new Vector2(0.0f, -3.64f);
+    }
     void Awake() {
         _Instance = this;
         uiController = GameObject.Find("/UI").GetComponent<UIController>();
+        player = GameObject.Find("/player");
     }
 
     // Use this for initialization
     void Start () {
-		
+        HideRestartButton();	
 	}
 	
 	// Update is called once per frame

@@ -51,4 +51,12 @@ public class ManualPilot : MonoBehaviour {
         return pos;
 
      }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "EnemyBullet") {
+            gameObject.SetActive(false);
+            GameManager.ShowReestartButton();
+        }
+    }
+
 }
